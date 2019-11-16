@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon",
     "start:prod": "node ./build/src/index.js",
-    "build": "./node_modules/typescript/bin/tsc",
+    "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ./src/**/*",
