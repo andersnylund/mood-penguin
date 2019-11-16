@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "cd backend && yarn start:prod",
-    "heroku-postbuild": "cd backend && yarn install && yarn build"
+    "heroku-postbuild": "cd backend && yarn install && yarn build && yarn knex:migrate:latest"
   },
   "name": "mental-health",
   "version": "1.0.0",

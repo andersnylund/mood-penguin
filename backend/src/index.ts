@@ -9,7 +9,7 @@ import knexConfig from '../knexfile';
 import api from './api';
 
 const knex = Knex(knexConfig);
-knex.migrate.latest();
+// knex.migrate.latest();
 Model.knex(knex);
 
 const app = express();
