@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
-    "start:prod": "node ./build/index.js",
+    "start:prod": "node ./build/src/index.js",
+    "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ./src/**/*",
