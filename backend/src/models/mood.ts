@@ -5,6 +5,7 @@ export default class Mood extends Model {
   happiness!: number;
   description!: string;
   timestamp!: Date;
+  sentiment!: number;
 
   static tableName = 'mood';
 }

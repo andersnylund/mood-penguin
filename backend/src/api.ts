@@ -1,7 +1,8 @@
 import { Request, Response, Router } from 'express';
+import uuid from 'uuid/v4';
 
 import Mood from './models/mood';
-import uuid from 'uuid/v4';
+import { getSentimentScore } from './sentiment';
 
 const router = Router();
 
@@ -11,11 +12,13 @@ const error = {
 
 router.post('/moods', async (req: Request, res: Response) => {
   try {
+    const sentimentScore = await getSentimentScore(req.body.description);
     const mood = await Mood.query().insert({
       id: uuid(),
       timestamp: new Date(),
       happiness: req.body.happiness,
-      description: req.body.description
+      description: req.body.description,
+      sentiment: sentimentScore
     });
     res.json(mood);
   } catch (e) {
