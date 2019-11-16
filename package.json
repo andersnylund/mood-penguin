@@ -11,6 +11,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": "10.x.x"
+    "node": "10.x.x",
+    "yarn": "1.19.x"
   }
 }
