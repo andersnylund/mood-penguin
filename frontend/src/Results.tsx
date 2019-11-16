@@ -5,38 +5,28 @@ import styled from 'styled-components';
 import { Mood } from '../../shared/types';
 import { getSmiley } from './smileys/Smileys';
 import { Container } from './Submission';
+import { Analysis } from './App';
 
 interface Props {
   changeScreen: () => void;
+  analysis: Analysis;
 }
 
-export const Results: FunctionComponent<Props> = ({ changeScreen }) => {
-  const [moods, setMoods] = useState([] as Mood[]);
-
-  const fetchData = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/api/moods`
-    );
-    const data: Mood[] = await response.json();
-    setMoods(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const averageMood = Math.floor(
-    moods.reduce(
-      (prevValue, currValue) =>
-        prevValue + (currValue.happiness ? currValue.happiness : 0),
-      0
-    ) / moods.length
-  );
+export const Results: FunctionComponent<Props> = ({
+  changeScreen,
+  analysis
+}) => {
+  const moodMetric =
+    (analysis.latestHappinessAverage + analysis.latestSentimentAverage) / 200;
 
   return (
     <Container>
-      <h1>Lately, your average mood has been like</h1>
-      {getSmiley(averageMood)}
+      <h1>Lately, your mood has been like</h1>
+      {getSmiley(moodMetric * 100)}
+      <h1>And your main talking points have been</h1>
+      {analysis.keyWords.map(keyword => (
+        <P key={keyword}> {keyword}</P>
+      ))}
       <ButtonContainer>
         <Button color="green" onClick={() => changeScreen()}>
           OK 👌
@@ -48,6 +38,13 @@ export const Results: FunctionComponent<Props> = ({ changeScreen }) => {
 
 const ButtonContainer = styled.div`
   margin: 40px;
+`;
+
+const P = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  color: darkblue;
+  margin: 0;
 `;
 
 export default Results;

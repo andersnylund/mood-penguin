@@ -9,9 +9,10 @@ import { getSmiley } from './smileys/Smileys';
 
 interface Props {
   changeScreen: () => void;
+  setAnalysis: (analysis: any) => void;
 }
 
-const Submission: React.FC<Props> = ({ changeScreen }) => {
+const Submission: React.FC<Props> = ({ changeScreen, setAnalysis }) => {
   const [sliderValue, setSliderValue] = useState(50);
   const [textValue, setTextValue] = useState('');
   const [isMessageVisible, setIsMessageVisible] = useState(false);
@@ -29,20 +30,24 @@ const Submission: React.FC<Props> = ({ changeScreen }) => {
 
   const handleSubmit = async () => {
     setIsMessageVisible(true);
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/moods`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        happiness: sliderValue,
-        description: textValue
-      })
-    });
+    const result = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/moods`,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          happiness: sliderValue,
+          description: textValue
+        })
+      }
+    );
+    const json = await result.json();
+    setAnalysis(json);
   };
 
-  console.log('sliderValue', sliderValue);
   return isMessageVisible ? (
     <MessageContainer
       animate={{ opacity: 1, y: 0, scale: 1 }}
