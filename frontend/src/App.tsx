@@ -43,7 +43,6 @@ const App: React.FC = () => {
   const [sliderValue, setSliderValue] = useState(50);
   const [textValue, setTextValue] = useState('');
   const [isMessageVisible, setIsMessageVisible] = useState(false);
-  console.log('textValue', textValue);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,6 +53,12 @@ const App: React.FC = () => {
     };
   }, [isMessageVisible]);
 
+  const handleSubmit = () => {
+    setSliderValue(50);
+    setIsMessageVisible(true);
+    console.log('textValue', textValue);
+  };
+
   return isMessageVisible ? (
     <MessageContainer
       animate={{ opacity: 1, y: 0 }}
@@ -63,7 +68,7 @@ const App: React.FC = () => {
       <Message
         success
         header="Thank you!"
-        content="Now go and continue on your awesome day!"
+        content="Now go and continue on your awesome day"
       />
     </MessageContainer>
   ) : (
@@ -88,9 +93,7 @@ const App: React.FC = () => {
             setTextValue(val.value);
           }}
         />
-        <StyledButton onClick={() => setIsMessageVisible(true)}>
-          Submit
-        </StyledButton>
+        <StyledButton onClick={() => handleSubmit()}>Submit</StyledButton>
       </StyledForm>
     </FormContainer>
   );
