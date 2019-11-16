@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": true,
+    "baseUrl": "./",
+    "outDir": "build",
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "lib": ["es2015"]
+  },
+  "include": ["./src/**/*.ts", "knexfile.ts"]
+}

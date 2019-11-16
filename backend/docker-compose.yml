@@ -1,0 +1,13 @@
+version: '3'
+services:
+  adminer:
+    image: adminer
+    ports:
+      - '8080:8080'
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: mental_health_dev
+      POSTGRES_PASSWORD: password

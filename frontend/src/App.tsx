@@ -53,10 +53,20 @@ const App: React.FC = () => {
     };
   }, [isMessageVisible]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setSliderValue(50);
     setIsMessageVisible(true);
-    console.log('textValue', textValue);
+    fetch('http://localhost:3001/api/moods', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        happiness: sliderValue,
+        description: textValue
+      })
+    });
   };
 
   return isMessageVisible ? (
@@ -86,14 +96,14 @@ const App: React.FC = () => {
         onChange={(e, val) => setSliderValue(val as number)}
       />
       {getSmiley(sliderValue)}
-      <StyledForm>
+      <StyledForm onSubmit={() => handleSubmit()}>
         <StyledTextArea
           placeholder="Tell me more"
           onChange={(e: any, val: any) => {
             setTextValue(val.value);
           }}
         />
-        <StyledButton onClick={() => handleSubmit()}>Submit</StyledButton>
+        <StyledButton>Submit</StyledButton>
       </StyledForm>
     </FormContainer>
   );
