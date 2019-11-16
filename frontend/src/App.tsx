@@ -43,11 +43,12 @@ const App: React.FC = () => {
   const [sliderValue, setSliderValue] = useState(50);
   const [textValue, setTextValue] = useState('');
   const [isMessageVisible, setIsMessageVisible] = useState(false);
+  console.log('textValue', textValue);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsMessageVisible(false);
-    }, 3000);
+    }, 6000);
     return () => {
       clearTimeout(timer);
     };
@@ -57,12 +58,12 @@ const App: React.FC = () => {
     <MessageContainer
       animate={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 20 }}
-      transition={{ duration: 2 }}
+      transition={{ duration: 3 }}
     >
       <Message
         success
         header="Thank you!"
-        content="You may now go and continue on your awesome day!"
+        content="Now go and continue on your awesome day!"
       />
     </MessageContainer>
   ) : (
