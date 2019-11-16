@@ -56,7 +56,7 @@ const App: React.FC = () => {
   const handleSubmit = async () => {
     setSliderValue(50);
     setIsMessageVisible(true);
-    fetch('http://localhost:3001/api/moods', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/moods`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
