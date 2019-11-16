@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "cd backend && yarn install && yarn build",
+    "start": "cd backend && yarn start:prod",
+    "heroku-postbuild": "yarn build"
+  },
+  "name": "mental-health",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:andersnylund/mental-health.git",
+  "author": "Anders Nylund <anders@andersnylund.com>",
+  "license": "MIT",
+  "private": true
+}
