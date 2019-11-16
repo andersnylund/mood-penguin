@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { motion } from 'framer-motion';
-import { Animation } from '../App';
+import { Animation } from '../smileys/Smileys';
 
 interface Props {
   animationProps: Animation;
