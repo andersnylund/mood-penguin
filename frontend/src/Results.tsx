@@ -22,7 +22,7 @@ export const Results: FunctionComponent<Props> = ({
   return (
     <Container>
       <h1>Lately, your mood has been like</h1>
-      {getSmiley(moodMetric * 100)}
+      {getSmiley(moodMetric)}
       <h1>And your main talking points have been</h1>
       {analysis.keyWords.map(keyword => (
         <P key={keyword}> {keyword}</P>
