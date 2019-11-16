@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Slider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { TextArea, Form, Button } from 'semantic-ui-react';
+import { TextArea, Form, Button, Message } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -41,9 +41,36 @@ const getSmiley = (happiness: number) => {
 
 const App: React.FC = () => {
   const [sliderValue, setSliderValue] = useState(50);
+  const [textValue, setTextValue] = useState('');
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
 
-  return (
-    <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMessageVisible(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isMessageVisible]);
+
+  return isMessageVisible ? (
+    <MessageContainer
+      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      transition={{ duration: 2 }}
+    >
+      <Message
+        success
+        header="Thank you!"
+        content="You may now go and continue on your awesome day!"
+      />
+    </MessageContainer>
+  ) : (
+    <FormContainer
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1>How are you feeling?</h1>
       <PrettoSlider
         valueLabelDisplay="auto"
@@ -54,16 +81,31 @@ const App: React.FC = () => {
       />
       {getSmiley(sliderValue)}
       <StyledForm>
-        <StyledTextArea placeholder="Tell me more" />
-        <StyledButton>Submit</StyledButton>
+        <StyledTextArea
+          placeholder="Tell me more"
+          onChange={(e: any, val: any) => {
+            setTextValue(val.value);
+          }}
+        />
+        <StyledButton onClick={() => setIsMessageVisible(true)}>
+          Submit
+        </StyledButton>
       </StyledForm>
-    </Container>
+    </FormContainer>
   );
 };
 
-const Container = styled(motion.div)`
-  margin: auto;
+const MessageContainer = styled(motion.div)`
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
+
+const FormContainer = styled(motion.div)`
+  margin: 20px auto 0px;
+  padding: 20px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
