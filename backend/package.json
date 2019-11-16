@@ -27,9 +27,7 @@
     "node-fetch": "^2.6.0",
     "objection": "^1.6.11",
     "pg": "^7.12.1",
-    "uuid": "^3.3.3"
-  },
-  "devDependencies": {
+    "uuid": "^3.3.3",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
     "@types/jest": "^24.0.22",
@@ -39,7 +37,6 @@
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
     "ts-node": "^8.4.1",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.2"
+    "tslint": "^5.20.1"
   }
 }
