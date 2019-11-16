@@ -9,5 +9,8 @@
   "repository": "git@github.com:andersnylund/mental-health.git",
   "author": "Anders Nylund <anders@andersnylund.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "engines": {
+    "node": "10.x.x"
+  }
 }
