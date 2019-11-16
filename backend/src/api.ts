@@ -28,12 +28,12 @@ router.post('/moods', async (req: Request, res: Response) => {
       .select('description')
       .limit(3);
 
-    const threeLatestHappinessAverage =
+    const latestHappinessAverage =
       threeLatestMoods
         .map(mood => mood.happiness)
         .reduce((prev, curr) => prev + curr) / 3;
 
-    const threeLatestSentimentAverage =
+    const latestSentimentAverage =
       (threeLatestMoods
         .map(mood => mood.sentiment)
         .reduce((prev, curr) => prev + curr) /
@@ -48,8 +48,8 @@ router.post('/moods', async (req: Request, res: Response) => {
 
     res.json({
       keyWords,
-      threeLatestHappinessAverage,
-      threeLatestSentimentAverage
+      latestHappinessAverage,
+      latestSentimentAverage
     });
   } catch (e) {
     console.error(e);

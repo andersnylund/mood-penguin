@@ -1,8 +1,7 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-import { Mood } from '../../shared/types';
 import { getSmiley } from './smileys/Smileys';
 import { Container } from './Submission';
 import { Analysis } from './App';
@@ -17,7 +16,9 @@ export const Results: FunctionComponent<Props> = ({
   analysis
 }) => {
   const moodMetric =
-    (analysis.latestHappinessAverage + analysis.latestSentimentAverage) / 200;
+    ((analysis.latestHappinessAverage + analysis.latestSentimentAverage) /
+      200) *
+    100;
 
   return (
     <Container>
